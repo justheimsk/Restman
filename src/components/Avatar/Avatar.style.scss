@@ -1,0 +1,21 @@
+.avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: dodgerblue;
+}
+
+.avatar--container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition-duration: var(--fast-transition);
+
+  &:hover {
+    background-color: var(--hover);
+  }
+}
