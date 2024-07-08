@@ -1,10 +1,11 @@
 import './Navbar.style.scss';
 
 import { HiOutlineCog6Tooth } from 'react-icons/hi2';
-import { SlBell } from 'react-icons/sl';
+import { GoBell } from 'react-icons/go';
 import { Search } from '@components/Navbar';
+import { Avatar } from '@components/Avatar';
 
-export default function Navbar() {
+export function Navbar() {
   return (
     <>
       <nav id="navbar">
@@ -19,9 +20,9 @@ export default function Navbar() {
             <HiOutlineCog6Tooth />
           </i>
           <i>
-            <SlBell />
+            <GoBell />
           </i>
-          <div id="account">Conta</div>
+          <Avatar />
         </div>
       </nav>
     </>

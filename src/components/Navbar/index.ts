@@ -1,4 +1,2 @@
-import Navbar from './Navbar';
-import Search from './Search/Search';
-
-export { Search, Navbar };
+export * from './Search/Search';
+export * from './Navbar';

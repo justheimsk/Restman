@@ -2,10 +2,15 @@ import './Search.style.scss';
 
 import { SlMagnifier } from 'react-icons/sl';
 
-export default function Search() {
+export function Search() {
   return (
     <>
-      <input type="text" placeholder="Search Restman" id="navbar--search" />
+      <div id="search--container">
+        <i id="search--icon">
+          <SlMagnifier />
+        </i>
+        <input type="text" placeholder="Search Restman" id="navbar--search" />
+      </div>
     </>
   );
 }
