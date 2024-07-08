@@ -1,0 +1,32 @@
+#navbar {
+  width: 100%;
+  height: 48px;
+  background-color: var(--primary);
+  box-shadow: inset 0 -1px 0 var(--border);
+  justify-content: space-between;
+  padding: 0 20px;
+  position: relative;
+
+  &,
+  #navbar--menu,
+  #navbar--actions {
+    display: flex;
+    align-items: center;
+  }
+
+  #navbar--menu {
+    span {
+      color: var(--text-primary);
+      padding: 7px 12px;
+      cursor: pointer;
+      transition: 0.15s;
+      font-size: 15px;
+      font-weight: 400;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: var(--hover);
+      }
+    }
+  }
+}
