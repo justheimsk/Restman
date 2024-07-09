@@ -1,0 +1,44 @@
+#layout--container {
+  display: flex;
+
+  .layout--column {
+    height: calc(100vh - 48px);
+  }
+
+  .layout--left {
+    width: 27.5%;
+  }
+
+  .layout--right {
+    width: 72.5%;
+  }
+
+  .layout__flex {
+    display: flex;
+  }
+
+  .layout--header {
+    font-size: 13px;
+    color: var(--text-primary);
+    font-weight: 600;
+
+    .layout--header--decoicon {
+      font-size: 17px;
+      font-weight: bolder;
+    }
+
+    &.layout--header__hover-color {
+      cursor: pointer;
+
+      &:hover {
+        color: dodgerblue;
+      }
+    }
+
+    &.layout--header__flex {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+  }
+}

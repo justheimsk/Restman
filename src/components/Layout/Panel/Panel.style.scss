@@ -1,0 +1,9 @@
+#layout--panel {
+  background-color: var(--primary);
+  width: 100%;
+  height: calc(100vh - 48px - 40px);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+}

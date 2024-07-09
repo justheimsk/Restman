@@ -1,0 +1,9 @@
+#layout--sidebar {
+  width: 81px;
+  height: calc(100vh - 48px - 40px);
+  background-color: var(--primary);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-left: none;
+  border-bottom: none;
+}

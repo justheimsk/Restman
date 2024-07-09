@@ -1,0 +1,13 @@
+.column--header {
+  height: 40px;
+  width: 100%;
+  background-color: var(--primary);
+  border: 1px solid var(--border);
+  border-top: none;
+  border-left: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+  color: var(--text-primary);
+}
