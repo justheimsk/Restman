@@ -7,7 +7,7 @@
   #search--icon {
     position: absolute;
     top: 50%;
-    left: 30px;
+    left: 32px;
     transform: translateY(-50%);
     display: flex;
     align-items: center;
@@ -26,7 +26,7 @@
   color: var(--text-secondary);
   outline: none;
   cursor: pointer;
-  padding-left: 30px;
+  padding-left: 25px;
   transition-duration: var(--fast-transition);
 
   &:hover {
