@@ -1,6 +1,7 @@
 import { CiUser } from 'react-icons/ci';
 import './Layout.style.scss';
 import { Header, Panel, Sidebar } from '@components/Layout';
+import { Button } from '@components/Button';
 
 export function Layout() {
   return (
@@ -13,6 +14,10 @@ export function Layout() {
                 <CiUser />
               </i>
               <span>My Workspace</span>
+            </div>
+            <div className="layout--header layout--header__flex">
+              <Button label="New" />
+              <Button label="Import" />
             </div>
           </Header>
           <div className="layout__flex">

@@ -1,9 +1,15 @@
 import './Button.style.scss';
 
-export function Button() {
+export type ButtonProps = {
+  label: string;
+};
+
+export function Button(props: ButtonProps) {
   return (
     <>
-      <h1>Hello World!</h1>
+      <button type="button" className="button">
+        {props.label}
+      </button>
     </>
   );
 }

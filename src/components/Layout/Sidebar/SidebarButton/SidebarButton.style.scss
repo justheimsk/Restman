@@ -1,0 +1,28 @@
+.sidebar-button {
+  min-width: 72px;
+  max-width: 72px;
+  min-height: 50px;
+  max-height: 50px;
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-size: 10.5px;
+  font-weight: 550;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  gap: 5px;
+
+  i {
+    font-size: 15px;
+  }
+
+  &.sidebar-button__active {
+    background-color: var(--border);
+  }
+
+  &:hover {
+    background-color: var(--hover);
+  }
+}

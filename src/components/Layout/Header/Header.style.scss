@@ -1,5 +1,5 @@
 .column--header {
-  height: 40px;
+  min-height: 40px;
   width: 100%;
   background-color: var(--primary);
   border: 1px solid var(--border);
@@ -8,6 +8,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 15px;
+  padding: 0 10px;
   color: var(--text-primary);
 }
