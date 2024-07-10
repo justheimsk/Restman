@@ -6,4 +6,46 @@
   border-top: none;
   border-left: none;
   border-bottom: none;
+  display: flex;
+  flex-direction: column;
+
+  #layout--panel--actions {
+    padding: 8px;
+    display: flex;
+    gap: 3px;
+    align-items: center;
+
+    i {
+      min-width: 25px;
+      min-height: 25px;
+      color: var(--text-secondary);
+      font-size: 16px;
+      font-weight: 200;
+      cursor: pointer;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: var(--hover);
+      }
+    }
+
+    #panel--actions--search {
+      width: 100%;
+
+      input {
+        width: 100%;
+        background-color: var(--primary);
+        border: 1px solid var(--border);
+        height: 25px;
+        border-radius: 4px;
+        outline: none;
+        color: var(--text-primary);
+        padding-left: 10px;
+
+        &:hover {
+          background-color: var(--hover);
+        }
+      }
+    }
+  }
 }

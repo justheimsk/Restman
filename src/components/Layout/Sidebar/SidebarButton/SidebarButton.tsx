@@ -1,7 +1,7 @@
 import './SidebarButton.style.scss';
 
 export type SidebarButtonProps = {
-  label: string;
+  label?: string;
   icon: React.ReactNode;
   active?: boolean;
 };
@@ -13,7 +13,7 @@ export function SidebarButton(props: SidebarButtonProps) {
         className={`sidebar-button ${props.active ? 'sidebar-button__active' : ''}`}
       >
         <i>{props.icon}</i>
-        <span>{props.label}</span>
+        {props.label && <span>{props.label}</span>}
       </div>
     </>
   );

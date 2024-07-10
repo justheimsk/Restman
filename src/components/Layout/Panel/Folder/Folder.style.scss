@@ -1,0 +1,41 @@
+.panel--folder {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  height: 28px;
+  width: 100%;
+  color: var(--text-primary);
+  padding: 0 9px 0 15px;
+  font-size: 13px;
+
+  &>div {
+    gap: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  .panel--folder--actions {
+    font-size: 15px;
+    opacity: 0;
+
+    i {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      border-radius: 4px;
+
+      &:hover {
+        background-color: var(--border);
+      }
+    }
+  }
+
+  &:hover {
+    background-color: var(--hover);
+
+    .panel--folder--actions {
+      opacity: 1;
+    }
+  }
+}

@@ -1,14 +1,19 @@
-import { FaBox, FaClock, FaCog } from 'react-icons/fa';
+import { FaVectorSquare } from 'react-icons/fa';
 import './Sidebar.style.scss';
 import { SidebarButton } from '@components/Layout';
+import { MdOutlineInbox } from 'react-icons/md';
+import { GoHistory } from 'react-icons/go';
+import { TbCategoryPlus } from 'react-icons/tb';
 
 export function Sidebar() {
   return (
     <>
       <div id="layout--sidebar">
-        <SidebarButton active icon={<FaBox />} label="Collections" />
-        <SidebarButton icon={<FaCog />} label="Environments" />
-        <SidebarButton icon={<FaClock />} label="History" />
+        <SidebarButton active icon={<MdOutlineInbox />} label="Collections" />
+        <SidebarButton icon={<FaVectorSquare />} label="Environments" />
+        <SidebarButton icon={<GoHistory />} label="History" />
+        <div className="layout--sidebar--divider" />
+        <SidebarButton icon={<TbCategoryPlus />} />
       </div>
     </>
   );
