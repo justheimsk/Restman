@@ -1,0 +1,83 @@
+.panel--endpoint {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  width: 100%;
+  color: var(--text-primary);
+  font-size: 13px;
+
+  &.panel--endpoint__closed {
+    .panel--endpoint--angle--icon {
+      transform: rotate(-90deg);
+    }
+
+    .panel--endpoint--endpoints {
+      display: none;
+    }
+  }
+
+  .panel--endpoint--infos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 28px;
+    padding: 0 9px 0 15px;
+
+    &>div {
+      gap: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    i {
+      &.panel--endpoint--get {
+        color: lime;
+      }
+
+      &.panel--endpoint--post {
+        color: yellow;
+      }
+
+      &.panel--endpoint--delete {
+        color: red;
+      }
+
+      &.panel--endpoint--put {
+        color: dodgerblue;
+      }
+
+      &.panel--endpoint--patch {
+        color: pink;
+      }
+    }
+
+    .panel--endpoint--actions {
+      font-size: 15px;
+      opacity: 0;
+
+      i {
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        border-radius: 4px;
+
+        &:hover {
+          background-color: var(--border);
+        }
+      }
+    }
+
+    &:hover {
+      background-color: var(--hover);
+
+      .panel--endpoint--actions {
+        opacity: 1;
+      }
+    }
+  }
+
+  .panel--endpoint--endpoints>div>div {
+    padding-left: 20px;
+  }
+}

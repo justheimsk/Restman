@@ -1,5 +1,5 @@
 import { FaPlus } from 'react-icons/fa6';
-import { Folder } from '@components/Layout';
+import { Endpoint } from '@components/Layout';
 import './Panel.style.scss';
 import { PiDotsThreeOutline } from 'react-icons/pi';
 
@@ -19,8 +19,13 @@ export function Panel() {
           </i>
         </div>
         <div id="layout--panel--folders">
-          <Folder label="Unnamed" />
-          <Folder label="Unnamed" />
+          <Endpoint type="folder" label="Unnamed">
+            <Endpoint label="Unnamed request" type="endpoint" method="get" />
+            <Endpoint label="Unnamed request" type="endpoint" method="post" />
+            <Endpoint label="Unnamed request" type="endpoint" method="delete" />
+            <Endpoint label="Unnamed request" type="endpoint" method="patch" />
+          </Endpoint>
+          <Endpoint type="folder" label="Unnamed" />
         </div>
       </div>
     </>
