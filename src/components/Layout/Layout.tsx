@@ -1,7 +1,11 @@
 import { CiUser } from 'react-icons/ci';
 import './Layout.style.scss';
-import { Header, Panel, Sidebar } from '@components/Layout';
+import { Header, Panel, Sidebar, Tab } from '@components/Layout';
 import { Button } from '@components/Button';
+import { GiBinoculars } from 'react-icons/gi';
+import { FaAngleDown, FaPlus, FaVectorSquare } from 'react-icons/fa6';
+import { LiaThListSolid } from 'react-icons/lia';
+import { RiFileListLine } from 'react-icons/ri';
 
 export function Layout() {
   return (
@@ -16,8 +20,8 @@ export function Layout() {
               <span>My Workspace</span>
             </div>
             <div className="layout--header layout--header__flex">
-              <Button label="New" />
-              <Button label="Import" />
+              <Button active small label="New" />
+              <Button active small label="Import" />
             </div>
           </Header>
           <div className="layout__flex">
@@ -25,7 +29,34 @@ export function Layout() {
             <Panel />
           </div>
         </div>
-        <div className="layout--column layout--right">a</div>
+        <div className="layout--column layout--right">
+          <Header secondary>
+            <div className="layout__flex layout__hfull layout__mgap layout__items-center">
+              <Tab active label="Overview" icon={<GiBinoculars />} />
+              <div className="layout--divider" />
+              <Tab label="Overview" icon={<GiBinoculars />} />
+              <div className="layout--divider" />
+              <i className="layout--header--button">
+                <FaPlus />
+              </i>
+            </div>
+            <div className="layout__flex layout__hfull layout__mgap layout__items-center">
+              <i className="layout--header--button">
+                <FaAngleDown />
+              </i>
+              <div className="layout--divider layout--divider__full" />
+              <Button
+                rightIcon={<FaAngleDown />}
+                icon={<FaVectorSquare />}
+                label={'No environments'}
+              />
+              <div className="layout--divider" />
+              <i className="layout--header--button">
+                <RiFileListLine />
+              </i>
+            </div>
+          </Header>
+        </div>
       </div>
     </>
   );

@@ -17,6 +17,43 @@
     display: flex;
   }
 
+  .layout__hfull {
+    height: 100%;
+  }
+
+  .layout--divider {
+    height: 45%;
+    width: 1px;
+    background-color: var(--hover);
+
+    &.layout--divider__full {
+      height: 100%;
+      background-color: var(--border);
+    }
+  }
+
+  .layout__mgap {
+    gap: 10px;
+  }
+
+  .layout__items-center {
+    align-items: center;
+  }
+
+  .layout--header--button {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    color: var(--text-secondary);
+
+    &:hover {
+      color: var(--text-primary);
+      background-color: var(--hover);
+    }
+  }
+
   .layout--header {
     font-size: 13px;
     color: var(--text-primary);

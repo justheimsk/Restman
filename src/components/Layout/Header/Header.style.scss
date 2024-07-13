@@ -1,5 +1,6 @@
 .column--header {
   min-height: 40px;
+  height: 40px;
   width: 100%;
   background-color: var(--primary);
   border: 1px solid var(--border);
@@ -10,4 +11,8 @@
   justify-content: space-between;
   padding: 0 10px;
   color: var(--text-primary);
+
+  &.column--header__secondary {
+    background-color: var(--secondary);
+  }
 }

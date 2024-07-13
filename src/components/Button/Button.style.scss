@@ -1,10 +1,38 @@
 .button {
   border: none;
-  padding: 4px 7px;
   font-size: 12px;
-  background-color: var(--hover);
+  background-color: transparent;
   border-radius: 2px;
-  color: var(--text-primary);
+  color: var(--text-secondary);
   font-weight: 600;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  justify-content: space-between;
+  outline: none;
+
+  &>div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &.button__small {
+    padding: 4px 7px;
+  }
+
+  &.button__active {
+    background-color: var(--hover);
+    color: var(--text-primary);
+  }
+
+  .button--right-icon {
+    margin-left: 10px;
+  }
+
+  &:hover {
+    background-color: var(--hover);
+    color: var(--text-primary);
+  }
 }
