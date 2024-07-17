@@ -22,13 +22,12 @@ export function Endpoint(props: EndpointProps) {
 
   return (
     <>
-      {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
       <div
-        onClick={() => setClosed(!closed)}
         className={`panel--endpoint ${closed ? 'panel--endpoint__closed' : ''}`}
       >
         <div className="panel--endpoint--infos">
-          <div>
+          {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+          <div onClick={() => setClosed(!closed)}>
             {props.type === 'endpoint' ? (
               <i className={`panel--endpoint--${props.method}`}>
                 {props.method === 'get' ? (
