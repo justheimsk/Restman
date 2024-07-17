@@ -6,6 +6,8 @@ import { GiBinoculars } from 'react-icons/gi';
 import { FaAngleDown, FaPlus, FaVectorSquare } from 'react-icons/fa6';
 import { LiaThListSolid } from 'react-icons/lia';
 import { RiFileListLine } from 'react-icons/ri';
+import { PiDotsThreeOutline } from 'react-icons/pi';
+import { RequestManager } from '@components/RequestManager';
 
 export function Layout() {
   return (
@@ -56,6 +58,9 @@ export function Layout() {
               </i>
             </div>
           </Header>
+          <div className="layout__pm">
+            <RequestManager />
+          </div>
         </div>
       </div>
     </>

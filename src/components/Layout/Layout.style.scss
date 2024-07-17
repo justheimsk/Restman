@@ -6,15 +6,23 @@
   }
 
   .layout--left {
-    min-width: 28.5%;
+    min-width: 380px;
   }
 
   .layout--right {
-    min-width: 71.5%;
+    width: 100%;
   }
 
   .layout__flex {
     display: flex;
+  }
+
+  .layout__flex-column {
+    flex-direction: column;
+  }
+
+  .layout__pm {
+    padding: 10px;
   }
 
   .layout__hfull {
