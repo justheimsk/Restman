@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './RequestOptions.style.scss';
+import { Table } from '@components/Table';
 
 const options = [
   {
@@ -8,14 +9,10 @@ const options = [
   },
   {
     id: 1,
-    label: 'Authorization',
-  },
-  {
-    id: 2,
     label: 'Headers',
   },
   {
-    id: 3,
+    id: 2,
     label: 'Body',
   },
 ];
@@ -41,28 +38,15 @@ export function RequestOptions() {
         <span id="request--cookies">Cookies</span>
       </div>
       <div id="request-options-table">
-        <table>
-          <thead>
-            <tr>
-              <td>Key</td>
-              <td>Value</td>
-              <td>Description</td>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <input type="text" placeholder="Key" />
-              </td>
-              <td>
-                <input type="text" placeholder="Value" />
-              </td>
-              <td>
-                <input type="text" placeholder="Description" />
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <Table
+          head={['Key', 'Value', 'Description']}
+          body={[
+            {
+              id: `${Math.random() * 999}`,
+              fields: ['Key', 'Value', 'Description'],
+            },
+          ]}
+        />
       </div>
     </>
   );
