@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './RequestOptions.style.scss';
 import { Table } from '@components/Table';
 
@@ -20,24 +20,31 @@ const options = [
 export function RequestOptions() {
   const [active, setActive] = useState(0);
 
-  function calcMaxHeight() {
-    const el = document.getElementById('request-options-table');
-    const response = document.getElementById('response');
-    const request = document.getElementById('request');
-    const input = document.getElementById('input--container');
+  useEffect(() => {
+    function calcMaxHeight() {
+      const el = document.getElementById('request-options-table');
+      const response = document.getElementById('response');
+      const request = document.getElementById('request');
+      const input = document.getElementById('input--container');
 
-    if (!el || !response || !request || !input) return;
-    const maxHeight =
-      window.innerHeight -
-      40 -
-      48 -
-      response.offsetHeight -
-      input.offsetHeight -
-      75;
+      if (!el || !response || !request || !input) return;
+      const maxHeight =
+        window.innerHeight -
+        40 -
+        48 -
+        response.offsetHeight -
+        input.offsetHeight -
+        75;
 
-    el.style.maxHeight = `${maxHeight}px`;
-    el.scroll({ top: Number.MAX_SAFE_INTEGER, behavior: 'smooth' });
-  }
+      el.style.maxHeight = `${maxHeight}px`;
+      el.scroll({ top: Number.MAX_SAFE_INTEGER, behavior: 'smooth' });
+    }
+
+    window.restman.events.optionsMaxHeight.subscribe(() => {
+      console.log('opa');
+      setTimeout(() => calcMaxHeight());
+    });
+  }, []);
 
   return (
     <>
@@ -58,7 +65,7 @@ export function RequestOptions() {
       </div>
       <div id="request-options-table">
         <Table
-          onRowCreation={calcMaxHeight}
+          onRowCreation={() => window.restman.events.optionsMaxHeight.notify()}
           head={['Key', 'Value', 'Description']}
           body={[
             {
