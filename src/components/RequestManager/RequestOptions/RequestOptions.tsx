@@ -20,6 +20,25 @@ const options = [
 export function RequestOptions() {
   const [active, setActive] = useState(0);
 
+  function calcMaxHeight() {
+    const el = document.getElementById('request-options-table');
+    const response = document.getElementById('response');
+    const request = document.getElementById('request');
+    const input = document.getElementById('input--container');
+
+    if (!el || !response || !request || !input) return;
+    const maxHeight =
+      window.innerHeight -
+      40 -
+      48 -
+      response.offsetHeight -
+      input.offsetHeight -
+      75;
+
+    el.style.maxHeight = `${maxHeight}px`;
+    el.scroll({ top: Number.MAX_SAFE_INTEGER, behavior: 'smooth' });
+  }
+
   return (
     <>
       <div id="request-options">
@@ -39,6 +58,7 @@ export function RequestOptions() {
       </div>
       <div id="request-options-table">
         <Table
+          onRowCreation={calcMaxHeight}
           head={['Key', 'Value', 'Description']}
           body={[
             {

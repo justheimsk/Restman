@@ -10,6 +10,8 @@ export type BodyType = {
 export type TableProps = {
   head: string[];
   body: Array<BodyType>;
+  onChange?: () => void;
+  onRowCreation?: () => void;
 };
 
 export function Table(props: TableProps) {
@@ -17,13 +19,15 @@ export function Table(props: TableProps) {
   const [changes, setChanges] = useState<string[]>([]);
 
   function onChange(e: BodyType) {
+    props.onChange?.();
     if (changes.includes(e.id)) return;
 
     setBody((b) => [
       ...b,
-      { id: `${Math.random() * 999}`, fields: b[0].fields },
+      { id: `${Math.random() * 999} `, fields: b[0].fields },
     ]);
     setChanges((c) => [...c, e.id]);
+    setTimeout(() => props.onRowCreation?.());
   }
 
   return (

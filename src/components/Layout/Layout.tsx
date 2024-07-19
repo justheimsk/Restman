@@ -58,7 +58,7 @@ export function Layout() {
               </i>
             </div>
           </Header>
-          <div className="layout__pm">
+          <div className="layout__hfull2">
             <RequestManager />
           </div>
         </div>

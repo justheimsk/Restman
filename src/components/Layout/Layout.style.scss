@@ -29,6 +29,10 @@
     height: 100%;
   }
 
+  .layout__hfull2 {
+    height: calc(100% - 40px);
+  }
+
   .layout--divider {
     height: 45%;
     width: 1px;

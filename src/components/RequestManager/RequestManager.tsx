@@ -1,11 +1,20 @@
-import { RequestInput, RequestOptions } from '@components/RequestManager';
+import {
+  RequestInput,
+  RequestOptions,
+  RequestResponse,
+} from '@components/RequestManager';
 import './RequestManager.style.scss';
 
 export function RequestManager() {
   return (
     <>
-      <RequestInput />
-      <RequestOptions />
+      <div id="request">
+        <div className="layout__pm">
+          <RequestInput />
+          <RequestOptions />
+        </div>
+        <RequestResponse />
+      </div>
     </>
   );
 }
