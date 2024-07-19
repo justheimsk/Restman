@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './pages/home.tsx';
+import store from './store/store';
+import { Provider } from 'react-redux';
+import './lib/index.ts';
 
 const rootEl = document.getElementById('root');
 if (rootEl) {
   const root = ReactDOM.createRoot(rootEl);
   root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
+    <Provider store={store}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Provider>,
   );
 }
