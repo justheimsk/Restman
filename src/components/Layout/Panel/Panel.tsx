@@ -18,7 +18,7 @@ export function Panel() {
             <PiDotsThreeOutline />
           </i>
         </div>
-        <div id="layout--panel--folders">
+        <div id="layout--panel--folders" className="scrollbar">
           <Endpoint type="folder" label="Unnamed">
             <Endpoint label="Unnamed request" type="endpoint" method="get" />
             <Endpoint label="Unnamed request" type="endpoint" method="post" />

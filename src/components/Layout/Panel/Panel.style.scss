@@ -9,6 +9,10 @@
   display: flex;
   flex-direction: column;
 
+  #layout--panel--folders {
+    overflow: auto;
+  }
+
   #layout--panel--actions {
     padding: 8px;
     display: flex;

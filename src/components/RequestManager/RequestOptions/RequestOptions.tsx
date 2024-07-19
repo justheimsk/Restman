@@ -63,7 +63,7 @@ export function RequestOptions() {
         </div>
         <span id="request--cookies">Cookies</span>
       </div>
-      <div id="request-options-table">
+      <div id="request-options-table" className="scrollbar">
         <Table
           onRowCreation={() => window.restman.events.optionsMaxHeight.notify()}
           head={['Key', 'Value', 'Description']}

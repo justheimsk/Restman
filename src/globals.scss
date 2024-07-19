@@ -18,6 +18,24 @@ html {
   overflow: hidden;
 }
 
+.scrollbar {
+  &::-webkit-scrollbar {
+    width: 20px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--hover);
+    background-clip: content-box;
+    border: 7px solid transparent;
+    border-radius: 50px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+}
+
 :root {
   --primary: #262626;
   --secondary: #212121;
