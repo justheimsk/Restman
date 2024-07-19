@@ -1,5 +1,6 @@
-import { type ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import './Table.style.scss';
+import { FaTrash } from 'react-icons/fa6';
 
 export type BodyType = {
   id: string;
@@ -49,6 +50,9 @@ export function Table(props: TableProps) {
                   />
                 </td>
               ))}
+              <i className="rowDelete">
+                <FaTrash />
+              </i>
             </tr>
           ))}
         </tbody>

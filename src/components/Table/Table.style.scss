@@ -6,14 +6,41 @@ table {
   border-collapse: collapse;
 
   tr {
+    position: relative;
+    width: 100%;
+
     &:focus-within {
       background-color: var(--hover);
+    }
+
+    .rowDelete {
+      position: absolute;
+      color: var(--text-secondary);
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      padding: 7px;
+      border-radius: 4px;
+      cursor: pointer;
+      opacity: 0;
+
+      &:hover {
+        background-color: var(--hover);
+        color: var(--text-primary);
+      }
+    }
+
+    &:hover {
+      .rowDelete {
+        opacity: 1;
+      }
     }
 
     td {
       border: 1px solid var(--border);
       height: 35px;
       padding: 0 10px;
+      width: 100%;
 
       input {
         width: 100%;
@@ -22,6 +49,10 @@ table {
         border: none;
         outline: none;
         color: var(--text-secondary);
+
+        &:not(:placeholder-shown) {
+          color: var(--text-primary);
+        }
 
         &:focus {
           color: var(--text-primary);
