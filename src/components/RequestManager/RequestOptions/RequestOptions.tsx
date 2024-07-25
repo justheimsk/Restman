@@ -41,7 +41,6 @@ export function RequestOptions() {
     }
 
     window.restman.events.optionsMaxHeight.subscribe(() => {
-      console.log('opa');
       setTimeout(() => calcMaxHeight());
     });
   }, []);
