@@ -25,6 +25,7 @@
 
   &.response__active {
     min-height: 300px;
+    max-height: 300px;
 
     i {
       transform: rotate(0deg) !important;
@@ -32,7 +33,6 @@
   }
 
   #response--value {
-    padding: 10px;
-    color: white;
+    height: 100%;
   }
 }

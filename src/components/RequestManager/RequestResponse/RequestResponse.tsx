@@ -1,12 +1,21 @@
 import { FaAngleDown } from 'react-icons/fa6';
 import './RequestResponse.style.scss';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import MonacoEditor from 'react-monaco-editor';
+import { useAppSelector } from '../../../hooks';
 
 export function RequestResponse() {
   const [active, setActive] = useState(true);
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  const response = useSelector((state: any) => state.httpResponse.value);
+  const response = useAppSelector((state) => state.httpResponse.value);
+
+  useEffect(() => {
+    console.log('Subscribed to resize event.');
+    window.addEventListener('resize', () => {
+      setActive(false);
+
+      setTimeout(() => setActive(true));
+    });
+  }, []);
 
   return (
     <>
@@ -23,7 +32,22 @@ export function RequestResponse() {
             <FaAngleDown />
           </i>
         </div>
-        <div id="response--value">{JSON.stringify(response, null, 4)}</div>
+        <div id="response--value">
+          {active && (
+            <MonacoEditor
+              width="100%"
+              height="100%"
+              editorWillMount={() => {}}
+              editorDidMount={() => {}}
+              editorWillUnmount={() => {}}
+              onChange={() => {}}
+              value={JSON.stringify(response, null, 4)}
+              options={{ readOnly: true, minimap: { enabled: false } }}
+              language="json"
+              theme="vs-dark"
+            />
+          )}
+        </div>
       </div>
     </>
   );

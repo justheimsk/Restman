@@ -1,25 +1,28 @@
 import { useState } from 'react';
 import './RequestInput.style.scss';
 import type { HTTP_METHODS } from '@lib/interfaces/HttpClient';
-import { useDispatch } from 'react-redux';
 import { set } from '../../../store/httpResponse';
+import { useAppDispatch } from '../../../hooks';
 
 export function RequestInput() {
-  const [url, setUrl] = useState('');
+  const [url, setUrl] = useState(
+    'https://jsonplaceholder.typicode.com/todos/1',
+  );
   const [method, setMethod] = useState<HTTP_METHODS>('GET');
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   async function sendRequest() {
-    try {
-      const res = await window.restman.http.request({
+    await window.restman.http
+      .request({
         endpoint: url,
         method: method,
+      })
+      .then((res) => {
+        dispatch(set(res.data));
+      })
+      .catch((err) => {
+        dispatch(set(err.message));
       });
-
-      dispatch(set(res.data));
-    } catch (err) {
-      console.log(err);
-    }
   }
 
   return (
@@ -36,6 +39,7 @@ export function RequestInput() {
           </select>
           <input
             onChange={(e) => setUrl(e.target.value)}
+            value={url}
             type="text"
             id="input"
             placeholder="Enter url or paste text"
