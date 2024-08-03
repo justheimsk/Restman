@@ -19,6 +19,15 @@
     justify-content: center;
     cursor: pointer;
 
+    img {
+      height: 25px;
+      width: 25px;
+    }
+
+    &:disabled {
+      cursor: wait;
+    }
+
     &:focus {
       outline: 3px solid dodgerblue;
     }

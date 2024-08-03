@@ -3,26 +3,30 @@ import './RequestInput.style.scss';
 import type { HTTP_METHODS } from '@lib/interfaces/HttpClient';
 import { set } from '../../../store/httpResponse';
 import { useAppDispatch } from '../../../hooks';
+import { Loader } from '@components/Loader/Loader';
 
 export function RequestInput() {
   const [url, setUrl] = useState(
     'https://jsonplaceholder.typicode.com/todos/1',
   );
   const [method, setMethod] = useState<HTTP_METHODS>('GET');
+  const [requestLoading, setRequestLoading] = useState(false);
   const dispatch = useAppDispatch();
 
   async function sendRequest() {
-    await window.restman.http
-      .request({
+    try {
+      setRequestLoading(true);
+
+      const res = await window.restman.http.request({
         endpoint: url,
         method: method,
-      })
-      .then((res) => {
-        dispatch(set(res.data));
-      })
-      .catch((err) => {
-        dispatch(set(err.message));
       });
+      dispatch(set(res.data));
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setRequestLoading(false);
+    }
   }
 
   return (
@@ -45,8 +49,13 @@ export function RequestInput() {
             placeholder="Enter url or paste text"
           />
         </div>
-        <button onClick={sendRequest} type="button" id="input--button">
-          Send
+        <button
+          disabled={requestLoading}
+          onClick={sendRequest}
+          type="button"
+          id="input--button"
+        >
+          {requestLoading ? <Loader /> : <span>Send</span>}
         </button>
       </div>
     </>
