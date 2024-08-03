@@ -4,6 +4,20 @@ import { useEffect, useState } from 'react';
 import MonacoEditor from 'react-monaco-editor';
 import { useAppSelector } from '../../../hooks';
 
+export type ResponseMetricProps = {
+  label: string;
+  value: string;
+};
+
+export function ResponseMetric(props: ResponseMetricProps) {
+  return (
+    <span className="response--metric">
+      {props.label}:{' '}
+      <span className="response--metric__highlight">{props.value}</span>
+    </span>
+  );
+}
+
 export function RequestResponse() {
   const [active, setActive] = useState(true);
   const response = useAppSelector((state) => state.httpResponse.value);
@@ -17,20 +31,44 @@ export function RequestResponse() {
     });
   }, []);
 
+  function calcResponseSize(bytes: number) {
+    const units = ['B', 'KB', 'MB', 'GB'];
+    let size = bytes;
+    let i = 0;
+
+    while (size >= 1024 && i <= units.length - 1) {
+      size /= 1024;
+      i++;
+    }
+
+    return `${size.toFixed(2)} ${units[i]}`;
+  }
+
   return (
     <>
       <div id="response" className={`${active ? 'response__active' : ''}`}>
         <div id="response--header">
           <span>Response</span>
-          {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-          <i
-            onClick={() => {
-              setActive(!active);
-              window.restman.events.optionsMaxHeight.notify();
-            }}
-          >
-            <FaAngleDown />
-          </i>
+          <div id="response--metrics">
+            <ResponseMetric
+              label="Status"
+              value={`${response.statusCode} ${response.statusText}`}
+            />
+            <ResponseMetric label="Time" value={`${response.elapsedTime} ms`} />
+            <ResponseMetric
+              label="Size"
+              value={`${calcResponseSize(response.size)}`}
+            />
+            {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+            <i
+              onClick={() => {
+                setActive(!active);
+                window.restman.events.optionsMaxHeight.notify();
+              }}
+            >
+              <FaAngleDown />
+            </i>
+          </div>
         </div>
         <div id="response--value">
           {active && (
@@ -41,7 +79,7 @@ export function RequestResponse() {
               editorDidMount={() => {}}
               editorWillUnmount={() => {}}
               onChange={() => {}}
-              value={JSON.stringify(response, null, 4)}
+              value={JSON.stringify(response.data, null, 4)}
               options={{ readOnly: true, minimap: { enabled: false } }}
               language="json"
               theme="vs-dark"

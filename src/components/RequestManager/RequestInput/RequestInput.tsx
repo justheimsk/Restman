@@ -21,7 +21,9 @@ export function RequestInput() {
         endpoint: url,
         method: method,
       });
-      dispatch(set(res.data));
+
+      console.log(res);
+      dispatch(set(res));
     } catch (err) {
       console.log(err);
     } finally {

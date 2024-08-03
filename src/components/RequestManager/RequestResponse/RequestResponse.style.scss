@@ -15,11 +15,31 @@
       font-weight: bolder;
     }
 
-    i {
-      color: var(--text-secondary);
-      font-size: 12px;
-      cursor: pointer;
-      transform: rotate(180deg);
+    #response--metrics {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .response--metric {
+        color: var(--text-secondary);
+        font-size: 11.5px;
+        font-weight: 500;
+        display: flex;
+        gap: 5px;
+
+        .response--metric__highlight {
+          font-size: 11.5px;
+          font-weight: 500;
+          color: var(--metric-color);
+        }
+      }
+
+      i {
+        color: var(--text-secondary);
+        font-size: 12px;
+        cursor: pointer;
+        transform: rotate(180deg);
+      }
     }
   }
 

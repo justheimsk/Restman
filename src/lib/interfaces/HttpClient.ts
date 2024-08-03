@@ -8,8 +8,11 @@ export interface RequestOptions {
 
 export interface HttpResponse {
   data: unknown;
-  status: number;
+  statusCode: number;
+  statusText: string;
   headers: { [key: string]: string };
+  size: number;
+  elapsedTime: number;
 }
 
 export interface HttpClient {

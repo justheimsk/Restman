@@ -7,6 +7,8 @@ import type {
 export class FetchAdapter implements HttpClient {
   public request(options: RequestOptions): Promise<HttpResponse> {
     return new Promise((resolve, reject) => {
+      const initialTime = Date.now();
+
       fetch(options.endpoint, {
         method: options.method,
         headers: {
@@ -14,10 +16,22 @@ export class FetchAdapter implements HttpClient {
         },
       })
         .then(async (res) => {
+          const json = await res.json();
+          const headers: HttpResponse['headers'] = {};
+
+          res.headers.forEach((value, name) => {
+            headers[name] = value;
+          });
+
           resolve({
-            status: res.status,
-            headers: {},
-            data: await res.json(),
+            statusCode: res.status,
+            statusText: res.statusText,
+            headers: headers,
+            data: json,
+            size: new Blob([JSON.stringify(json), JSON.stringify(headers)], {
+              type: 'application/json',
+            }).size,
+            elapsedTime: Date.now() - initialTime,
           });
         })
         .catch(reject);

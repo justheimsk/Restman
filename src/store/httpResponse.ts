@@ -3,7 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 export const httpResponseSlice = createSlice({
   name: 'httpResponse',
   initialState: {
-    value: {},
+    value: {
+      data: {},
+      elapsedTime: 0,
+      size: 0,
+      statusCode: 0,
+      statusText: '',
+    },
   },
   reducers: {
     set: (state, action) => {
