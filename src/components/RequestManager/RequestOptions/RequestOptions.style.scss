@@ -16,21 +16,6 @@
     display: flex;
     align-items: center;
     gap: 20px;
-
-    &>span {
-      color: var(--text-secondary);
-      cursor: pointer;
-      height: 25px;
-
-      &.option__active {
-        border-bottom: 1px solid var(--postman);
-      }
-
-      &:hover,
-      &.option__active {
-        color: var(--text-primary);
-      }
-    }
   }
 }
 

@@ -3,6 +3,8 @@ import './RequestResponse.style.scss';
 import { useEffect, useState } from 'react';
 import MonacoEditor from 'react-monaco-editor';
 import { useAppSelector } from '../../../hooks';
+import { OptionTab } from '../OptionsTab/OptionTab';
+import { Table } from '@components/Table';
 
 export type ResponseMetricProps = {
   label: string;
@@ -18,8 +20,20 @@ export function ResponseMetric(props: ResponseMetricProps) {
   );
 }
 
+const tabs = [
+  {
+    id: 0,
+    label: 'Body',
+  },
+  {
+    id: 1,
+    label: 'Headers',
+  },
+];
+
 export function RequestResponse() {
   const [active, setActive] = useState(true);
+  const [activeTab, setActiveTab] = useState(0);
   const response = useAppSelector((state) => state.httpResponse.value);
 
   useEffect(() => {
@@ -41,6 +55,7 @@ export function RequestResponse() {
       i++;
     }
 
+    console.log(response.headers);
     return `${size.toFixed(2)} ${units[i]}`;
   }
 
@@ -48,7 +63,21 @@ export function RequestResponse() {
     <>
       <div id="response" className={`${active ? 'response__active' : ''}`}>
         <div id="response--header">
-          <span>Response</span>
+          {response.statusCode ? (
+            <div id="response--tabs">
+              {tabs.map((tab) => (
+                <OptionTab
+                  key={tab.id}
+                  label={tab.label}
+                  id={tab.id}
+                  active={activeTab === tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                />
+              ))}
+            </div>
+          ) : (
+            <span>Response</span>
+          )}
           <div id="response--metrics">
             <ResponseMetric
               label="Status"
@@ -71,7 +100,7 @@ export function RequestResponse() {
           </div>
         </div>
         <div id="response--value">
-          {active && (
+          {active && activeTab === 0 ? (
             <MonacoEditor
               width="100%"
               height="100%"
@@ -84,6 +113,23 @@ export function RequestResponse() {
               language="json"
               theme="vs-dark"
             />
+          ) : (
+            active &&
+            activeTab === 1 && (
+              <Table
+                head={['Key', 'Value']}
+                readOnly
+                focused
+                body={Object.entries<string>(response.headers).map(
+                  (entry: string[]) => {
+                    return {
+                      id: `${Math.random() * 999}`,
+                      fields: [entry[0], entry[1]],
+                    };
+                  },
+                )}
+              />
+            )
           )}
         </div>
       </div>

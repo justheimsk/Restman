@@ -9,6 +9,7 @@ export const httpResponseSlice = createSlice({
       size: 0,
       statusCode: 0,
       statusText: '',
+      headers: {},
     },
   },
   reducers: {

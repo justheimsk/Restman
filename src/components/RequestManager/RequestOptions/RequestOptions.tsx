@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './RequestOptions.style.scss';
 import { Table } from '@components/Table';
+import { OptionTab } from '../OptionsTab/OptionTab';
 
 const options = [
   {
@@ -50,14 +51,13 @@ export function RequestOptions() {
       <div id="request-options">
         <div>
           {options.map((opt) => (
-            // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-            <span
-              className={`${active === opt.id ? 'option__active' : ''}`}
-              onClick={() => setActive(opt.id)}
+            <OptionTab
               key={opt.id}
-            >
-              {opt.label}
-            </span>
+              label={opt.label}
+              id={opt.id}
+              active={active === opt.id}
+              onClick={() => setActive(opt.id)}
+            />
           ))}
         </div>
         <span id="request--cookies">Cookies</span>

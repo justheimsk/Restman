@@ -12,6 +12,7 @@ export type TableProps = {
   body: Array<BodyType>;
   onChange?: () => void;
   onRowCreation?: () => void;
+  readOnly?: boolean;
 };
 
 export function Table(props: TableProps) {
@@ -48,15 +49,19 @@ export function Table(props: TableProps) {
                 // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 <td key={i}>
                   <input
+                    readOnly={props.readOnly}
                     onChange={() => onChange(_body)}
                     type="text"
                     placeholder={b}
+                    value={props.readOnly ? b : ''}
                   />
                 </td>
               ))}
-              <i className="rowDelete">
-                <FaTrash />
-              </i>
+              {!props.readOnly && (
+                <i className="rowDelete">
+                  <FaTrash />
+                </i>
+              )}
             </tr>
           ))}
         </tbody>
