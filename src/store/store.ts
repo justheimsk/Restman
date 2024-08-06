@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import httpResponseReducer from './httpResponse';
+import layoutReducer from './layoutSlice';
 
 const store = configureStore({
   reducer: {
     httpResponse: httpResponseReducer,
+    layout: layoutReducer,
   },
 });
 
