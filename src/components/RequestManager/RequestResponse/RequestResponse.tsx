@@ -119,7 +119,6 @@ export function RequestResponse() {
               <Table
                 head={['Key', 'Value']}
                 readOnly
-                focused
                 body={Object.entries<string>(response.headers).map(
                   (entry: string[]) => {
                     return {

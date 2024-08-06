@@ -6,9 +6,18 @@
   cursor: pointer;
   height: 100%;
   width: 150px;
+  min-width: 150px;
   font-size: 13px;
   color: var(--text-secondary);
   position: relative;
+
+  &>span {
+    width: 100%;
+    max-width: 60%;
+    white-space: nowrap;
+    text-overflow: clip;
+    overflow: hidden;
+  }
 
   i {
     font-size: 19px;

@@ -4,12 +4,26 @@ import { Header, Panel, Sidebar, Tab } from '@components/Layout';
 import { Button } from '@components/Button';
 import { GiBinoculars } from 'react-icons/gi';
 import { FaAngleDown, FaPlus, FaVectorSquare } from 'react-icons/fa6';
-import { LiaThListSolid } from 'react-icons/lia';
 import { RiFileListLine } from 'react-icons/ri';
-import { PiDotsThreeOutline } from 'react-icons/pi';
 import { RequestManager } from '@components/RequestManager';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { activateEndpoint } from '../../store/layoutSlice';
 
 export function Layout() {
+  const tabs = useAppSelector((state) => state.layout.tabs);
+  const endpoints = useAppSelector((state) => state.layout.endpoints);
+  const dispatch = useAppDispatch();
+
+  function scrollX(e: React.WheelEvent<HTMLDivElement>) {
+    const el = e.currentTarget;
+    e.preventDefault();
+
+    el.scrollTo({
+      left: el.scrollLeft - e.deltaY,
+      behavior: 'auto',
+    });
+  }
+
   return (
     <>
       <div id="layout--container">
@@ -33,11 +47,26 @@ export function Layout() {
         </div>
         <div className="layout--column layout--right">
           <Header secondary>
-            <div className="layout__flex layout__hfull layout__mgap layout__items-center">
-              <Tab active label="Overview" icon={<GiBinoculars />} />
-              <div className="layout--divider" />
-              <Tab label="Overview" icon={<GiBinoculars />} />
-              <div className="layout--divider" />
+            <div
+              onWheel={scrollX}
+              className="layout__flex layout--tabs layout__hfull layout__mgap layout__items-center"
+            >
+              {tabs.map((tab) => (
+                <>
+                  <Tab
+                    key={tab.id}
+                    label={
+                      endpoints.find((e) => e.id === tab.endpointId)?.name || ''
+                    }
+                    active={
+                      endpoints.find((e) => e.id === tab.endpointId)?.active
+                    }
+                    icon={<GiBinoculars />}
+                    onClick={() => dispatch(activateEndpoint(tab.endpointId))}
+                  />
+                  <div key={tab.id} className="layout--divider" />
+                </>
+              ))}
               <i className="layout--header--button">
                 <FaPlus />
               </i>

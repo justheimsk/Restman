@@ -5,6 +5,16 @@
     height: calc(100vh - 48px);
   }
 
+  .layout--tabs {
+    max-width: calc(100vw - 270px - 380px - 10px);
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
   .layout--left {
     min-width: 380px;
   }

@@ -2,15 +2,16 @@ import { useState } from 'react';
 import './RequestInput.style.scss';
 import type { HTTP_METHODS } from '@lib/interfaces/HttpClient';
 import { set } from '../../../store/httpResponse';
-import { useAppDispatch } from '../../../hooks';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { Loader } from '@components/Loader/Loader';
+import { setUrl } from '../../../store/layoutSlice';
 
 export function RequestInput() {
-  const [url, setUrl] = useState(
-    'https://jsonplaceholder.typicode.com/todos/1',
-  );
   const [method, setMethod] = useState<HTTP_METHODS>('GET');
   const [requestLoading, setRequestLoading] = useState(false);
+  const endpoint = useAppSelector((state) =>
+    state.layout.endpoints.find((e) => e.active),
+  );
   const dispatch = useAppDispatch();
 
   async function sendRequest() {
@@ -18,17 +19,20 @@ export function RequestInput() {
       setRequestLoading(true);
 
       const res = await window.restman.http.request({
-        endpoint: url,
+        endpoint: endpoint?.url || '',
         method: method,
       });
 
-      console.log(res);
       dispatch(set(res));
     } catch (err) {
       console.log(err);
     } finally {
       setRequestLoading(false);
     }
+  }
+
+  function _setUrl(url: string) {
+    dispatch(setUrl({ id: endpoint?.id, url }));
   }
 
   return (
@@ -44,8 +48,8 @@ export function RequestInput() {
             <option value="POST">POST</option>
           </select>
           <input
-            onChange={(e) => setUrl(e.target.value)}
-            value={url}
+            onChange={(e) => _setUrl(e.target.value)}
+            value={endpoint?.url}
             type="text"
             id="input"
             placeholder="Enter url or paste text"

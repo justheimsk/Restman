@@ -49,11 +49,10 @@ export function Table(props: TableProps) {
                 // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 <td key={i}>
                   <input
-                    readOnly={props.readOnly}
+                    readOnly={props.readOnly || false}
                     onChange={() => onChange(_body)}
                     type="text"
                     placeholder={b}
-                    value={props.readOnly ? b : ''}
                   />
                 </td>
               ))}

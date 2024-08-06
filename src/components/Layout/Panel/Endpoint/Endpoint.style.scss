@@ -6,6 +6,10 @@
   color: var(--text-primary);
   font-size: 13px;
 
+  &.panel--endpoint__active {
+    border-left: 1px solid var(--postman);
+  }
+
   &.panel--endpoint__closed {
     .panel--endpoint--angle--icon {
       transform: rotate(-90deg);

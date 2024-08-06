@@ -2,13 +2,33 @@ import { FaPlus } from 'react-icons/fa6';
 import { Endpoint } from '@components/Layout';
 import './Panel.style.scss';
 import { PiDotsThreeOutline } from 'react-icons/pi';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { activateEndpoint, pushEndpoint } from '../../../store/layoutSlice';
 
 export function Panel() {
+  const endpoints = useAppSelector((state) => state.layout.endpoints);
+  const dispatch = useAppDispatch();
+
+  function addEndpoint() {
+    const id = `${Math.floor(Math.random() * 999)}`;
+    dispatch(
+      pushEndpoint({
+        name: 'Unnamed request',
+        id,
+        method: 'get',
+        url: 'https://jsonplaceholder.typicode.com/todos/1',
+        active: false,
+      }),
+    );
+    dispatch(activateEndpoint(id));
+  }
+
   return (
     <>
       <div id="layout--panel">
         <div id="layout--panel--actions">
-          <i>
+          {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+          <i onClick={() => addEndpoint()}>
             <FaPlus />
           </i>
           <div id="panel--actions--search">
@@ -19,13 +39,16 @@ export function Panel() {
           </i>
         </div>
         <div id="layout--panel--folders" className="scrollbar">
-          <Endpoint type="folder" label="Unnamed">
-            <Endpoint label="Unnamed request" type="endpoint" method="get" />
-            <Endpoint label="Unnamed request" type="endpoint" method="post" />
-            <Endpoint label="Unnamed request" type="endpoint" method="delete" />
-            <Endpoint label="Unnamed request" type="endpoint" method="patch" />
-          </Endpoint>
-          <Endpoint type="folder" label="Unnamed" />
+          {endpoints.map((e) => (
+            <Endpoint
+              onClick={() => dispatch(activateEndpoint(e.id))}
+              label={e.name}
+              method={e.method}
+              type="endpoint"
+              key={e.id}
+              active={e.active}
+            />
+          ))}
         </div>
       </div>
     </>

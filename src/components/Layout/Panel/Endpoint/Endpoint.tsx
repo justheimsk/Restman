@@ -10,11 +10,15 @@ import {
 } from 'react-icons/tb';
 import { useState } from 'react';
 
+export type METHODS = 'get' | 'post' | 'put' | 'patch' | 'delete';
 export type EndpointProps = {
   label: string;
   type: 'folder' | 'endpoint';
-  method?: 'get' | 'post' | 'put' | 'patch' | 'delete';
+  method?: METHODS;
   children?: React.ReactNode;
+  active?: boolean;
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  onClick?: (...args: any) => void;
 };
 
 export function Endpoint(props: EndpointProps) {
@@ -22,8 +26,10 @@ export function Endpoint(props: EndpointProps) {
 
   return (
     <>
+      {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
       <div
-        className={`panel--endpoint ${closed ? 'panel--endpoint__closed' : ''}`}
+        onClick={props.onClick}
+        className={`panel--endpoint ${props.active ? 'panel--endpoint__active' : ''} ${closed ? 'panel--endpoint__closed' : ''}`}
       >
         <div className="panel--endpoint--infos">
           {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
