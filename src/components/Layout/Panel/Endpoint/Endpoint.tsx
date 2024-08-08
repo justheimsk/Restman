@@ -9,12 +9,12 @@ import {
   TbHttpPut,
 } from 'react-icons/tb';
 import { useState } from 'react';
+import type { HTTP_METHODS } from '@lib/types/HTTP_METHODS';
 
-export type METHODS = 'get' | 'post' | 'put' | 'patch' | 'delete';
 export type EndpointProps = {
   label: string;
   type: 'folder' | 'endpoint';
-  method?: METHODS;
+  method?: HTTP_METHODS;
   children?: React.ReactNode;
   active?: boolean;
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>

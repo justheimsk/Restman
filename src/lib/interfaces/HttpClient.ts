@@ -1,4 +1,4 @@
-export type HTTP_METHODS = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
+import type { HTTP_METHODS } from '@lib/types/HTTP_METHODS';
 
 export interface RequestOptions {
   method: HTTP_METHODS;

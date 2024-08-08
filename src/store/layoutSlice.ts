@@ -1,18 +1,10 @@
-import type { METHODS } from '@components/Layout';
+import type { IEndpoint } from '@lib/interfaces/Endpoint';
+import type { ITab } from '@lib/interfaces/Tab';
 import { createSlice } from '@reduxjs/toolkit';
 
 export type ILayoutState = {
-  endpoints: Array<{
-    id: string;
-    name: string;
-    url: string;
-    method: METHODS;
-    active: boolean;
-  }>;
-  tabs: Array<{
-    endpointId: string;
-    id: string;
-  }>;
+  endpoints: Array<IEndpoint>;
+  tabs: Array<ITab>;
 };
 
 const initialState: ILayoutState = {
