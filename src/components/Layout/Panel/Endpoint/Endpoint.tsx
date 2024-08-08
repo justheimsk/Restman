@@ -1,5 +1,7 @@
 import { FaAngleDown } from 'react-icons/fa6';
 import './Endpoint.style.scss';
+import type { HTTP_METHODS } from '@lib/types/HTTP_METHODS';
+import { useState } from 'react';
 import { PiDotsThreeOutline } from 'react-icons/pi';
 import {
   TbHttpDelete,
@@ -8,8 +10,6 @@ import {
   TbHttpPost,
   TbHttpPut,
 } from 'react-icons/tb';
-import { useState } from 'react';
-import type { HTTP_METHODS } from '@lib/types/HTTP_METHODS';
 
 export type EndpointProps = {
   label: string;

@@ -1,14 +1,15 @@
 import { CiUser } from 'react-icons/ci';
 import './Layout.style.scss';
-import { Header, Panel, Sidebar, Tab } from '@components/Layout';
 import { Button } from '@components/Button';
-import { GiBinoculars } from 'react-icons/gi';
-import { FaAngleDown, FaPlus, FaVectorSquare } from 'react-icons/fa6';
-import { RiFileListLine } from 'react-icons/ri';
+import { Header, Panel, Sidebar, Tab } from '@components/Layout';
 import { RequestManager } from '@components/RequestManager';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { activateEndpoint, pushEndpoint } from '../../store/layoutSlice';
 import { useEffect } from 'react';
+import React from 'react';
+import { FaAngleDown, FaPlus, FaVectorSquare } from 'react-icons/fa6';
+import { GiBinoculars } from 'react-icons/gi';
+import { RiFileListLine } from 'react-icons/ri';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { activateEndpoint } from '../../store/layoutSlice';
 
 export function Layout() {
   const tabs = useAppSelector((state) => state.layout.tabs);
@@ -26,18 +27,8 @@ export function Layout() {
   }
 
   useEffect(() => {
-    const id = Math.floor(Math.random() * 9999);
-    dispatch(
-      pushEndpoint({
-        name: 'Unnamed request',
-        id,
-        method: 'get',
-        url: 'https://jsonplaceholder.typicode.com/todos/1',
-        active: false,
-      }),
-    );
-    dispatch(activateEndpoint(id));
-  }, [dispatch]);
+    window.restman.client.registerAllEndpoints();
+  }, []);
 
   return (
     <>
@@ -67,9 +58,8 @@ export function Layout() {
               className="layout__flex layout--tabs layout__hfull layout__mgap layout__items-center"
             >
               {tabs.map((tab) => (
-                <>
+                <React.Fragment key={tab.id}>
                   <Tab
-                    key={tab.id}
                     label={
                       endpoints.find((e) => e.id === tab.endpointId)?.name || ''
                     }
@@ -77,10 +67,12 @@ export function Layout() {
                       endpoints.find((e) => e.id === tab.endpointId)?.active
                     }
                     icon={<GiBinoculars />}
-                    onClick={() => dispatch(activateEndpoint(tab.endpointId))}
+                    onClick={() =>
+                      window.restman.client.activateEndpoint(tab.endpointId)
+                    }
                   />
-                  <div key={tab.id} className="layout--divider" />
-                </>
+                  <div className="layout--divider" />
+                </React.Fragment>
               ))}
               <i className="layout--header--button">
                 <FaPlus />

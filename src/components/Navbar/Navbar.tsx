@@ -1,9 +1,9 @@
 import './Navbar.style.scss';
 
-import { HiOutlineCog6Tooth } from 'react-icons/hi2';
-import { GoBell } from 'react-icons/go';
-import { Search } from '@components/Navbar';
 import { Avatar } from '@components/Avatar';
+import { Search } from '@components/Navbar';
+import { GoBell } from 'react-icons/go';
+import { HiOutlineCog6Tooth } from 'react-icons/hi2';
 
 export function Navbar() {
   return (

@@ -1,7 +1,7 @@
 import type {
   HttpClient,
-  RequestOptions,
   HttpResponse,
+  RequestOptions,
 } from '@lib/interfaces/HttpClient';
 
 export class FetchAdapter implements HttpClient {

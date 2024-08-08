@@ -1,10 +1,10 @@
 import { FaAngleDown } from 'react-icons/fa6';
 import './RequestResponse.style.scss';
+import { Table } from '@components/Table';
 import { useEffect, useState } from 'react';
 import MonacoEditor from 'react-monaco-editor';
 import { useAppSelector } from '../../../hooks';
 import { OptionTab } from '../OptionsTab/OptionTab';
-import { Table } from '@components/Table';
 
 export type ResponseMetricProps = {
   label: string;
@@ -55,7 +55,6 @@ export function RequestResponse() {
       i++;
     }
 
-    console.log(response.headers);
     return `${size.toFixed(2)} ${units[i]}`;
   }
 

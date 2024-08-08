@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import './RequestInput.style.scss';
-import type { HTTP_METHODS } from '@lib/interfaces/HttpClient';
-import { set } from '../../../store/httpResponse';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { Loader } from '@components/Loader/Loader';
-import { setUrl } from '../../../store/layoutSlice';
+import type { HTTP_METHODS } from '@lib/types/HTTP_METHODS';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { set } from '../../../store/httpResponse';
 
 export function RequestInput() {
-  const [method, setMethod] = useState<HTTP_METHODS>('GET');
+  const [method, setMethod] = useState<HTTP_METHODS>('get');
   const [requestLoading, setRequestLoading] = useState(false);
   const endpoint = useAppSelector((state) =>
     state.layout.endpoints.find((e) => e.active),
@@ -31,10 +30,6 @@ export function RequestInput() {
     }
   }
 
-  function _setUrl(url: string) {
-    dispatch(setUrl({ id: endpoint?.id, url }));
-  }
-
   return (
     <>
       <div id="input--container">
@@ -48,7 +43,14 @@ export function RequestInput() {
             <option value="POST">POST</option>
           </select>
           <input
-            onChange={(e) => _setUrl(e.target.value)}
+            onChange={(e) =>
+              endpoint
+                ? window.restman.client.updateEndpoint(
+                    endpoint.id,
+                    e.target.value,
+                  )
+                : {}
+            }
             value={endpoint?.url}
             type="text"
             id="input"

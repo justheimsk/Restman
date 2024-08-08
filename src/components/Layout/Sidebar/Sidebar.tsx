@@ -1,8 +1,8 @@
 import { FaVectorSquare } from 'react-icons/fa';
 import './Sidebar.style.scss';
 import { SidebarButton } from '@components/Layout';
-import { MdOutlineInbox } from 'react-icons/md';
 import { GoHistory } from 'react-icons/go';
+import { MdOutlineInbox } from 'react-icons/md';
 import { TbCategoryPlus } from 'react-icons/tb';
 
 export function Sidebar() {

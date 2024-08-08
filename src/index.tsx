@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import App from './pages/home.tsx';
 import store from './store/store';
-import { Provider } from 'react-redux';
 import './lib/index.ts';
 
 const rootEl = document.getElementById('root');

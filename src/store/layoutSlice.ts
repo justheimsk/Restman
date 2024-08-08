@@ -1,6 +1,6 @@
 import type { IEndpoint } from '@lib/interfaces/Endpoint';
 import type { ITab } from '@lib/interfaces/Tab';
-import { createSlice } from '@reduxjs/toolkit';
+import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export type ILayoutState = {
   endpoints: Array<IEndpoint>;
@@ -16,14 +16,16 @@ export const layoutSlice = createSlice({
   name: 'layoutSlice',
   initialState,
   reducers: {
-    pushEndpoint: (state, action) => {
-      state.endpoints.push(action.payload);
-      state.tabs.push({
-        id: `${Math.floor(Math.random() * 999)}`,
-        endpointId: action.payload.id,
-      });
+    pushEndpoint: (state, action: PayloadAction<Array<IEndpoint>>) => {
+      for (const endp of action.payload) {
+        state.endpoints.push(endp);
+        state.tabs.push({
+          id: `${Math.floor(Math.random() * 999)}`,
+          endpointId: endp.id,
+        });
+      }
     },
-    activateEndpoint: (state, action) => {
+    activateEndpoint: (state, action: PayloadAction<string>) => {
       const endpoint = state.endpoints.find((e) => e.id === action.payload);
       if (endpoint) {
         const endpoints = state.endpoints.filter((e) => e.active);
@@ -36,7 +38,7 @@ export const layoutSlice = createSlice({
         endpoint.active = true;
       }
     },
-    setUrl: (state, action) => {
+    setUrl: (state, action: PayloadAction<{ id: string; url: string }>) => {
       const endpoint = state.endpoints.find((e) => e.id === action.payload.id);
       if (endpoint) {
         endpoint.url = action.payload.url;

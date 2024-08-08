@@ -57,9 +57,11 @@ export function Table(props: TableProps) {
                 </td>
               ))}
               {!props.readOnly && (
-                <i className="rowDelete">
-                  <FaTrash />
-                </i>
+                <td>
+                  <i className="rowDelete">
+                    <FaTrash />
+                  </i>
+                </td>
               )}
             </tr>
           ))}
