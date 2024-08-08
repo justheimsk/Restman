@@ -7,7 +7,8 @@ import { FaAngleDown, FaPlus, FaVectorSquare } from 'react-icons/fa6';
 import { RiFileListLine } from 'react-icons/ri';
 import { RequestManager } from '@components/RequestManager';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { activateEndpoint } from '../../store/layoutSlice';
+import { activateEndpoint, pushEndpoint } from '../../store/layoutSlice';
+import { useEffect } from 'react';
 
 export function Layout() {
   const tabs = useAppSelector((state) => state.layout.tabs);
@@ -23,6 +24,20 @@ export function Layout() {
       behavior: 'auto',
     });
   }
+
+  useEffect(() => {
+    const id = Math.floor(Math.random() * 9999);
+    dispatch(
+      pushEndpoint({
+        name: 'Unnamed request',
+        id,
+        method: 'get',
+        url: 'https://jsonplaceholder.typicode.com/todos/1',
+        active: false,
+      }),
+    );
+    dispatch(activateEndpoint(id));
+  }, [dispatch]);
 
   return (
     <>
