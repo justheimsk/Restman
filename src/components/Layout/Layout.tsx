@@ -8,13 +8,11 @@ import React from 'react';
 import { FaAngleDown, FaPlus, FaVectorSquare } from 'react-icons/fa6';
 import { GiBinoculars } from 'react-icons/gi';
 import { RiFileListLine } from 'react-icons/ri';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { activateEndpoint } from '../../store/layoutSlice';
+import { useAppSelector } from '../../hooks';
 
 export function Layout() {
   const tabs = useAppSelector((state) => state.layout.tabs);
   const endpoints = useAppSelector((state) => state.layout.endpoints);
-  const dispatch = useAppDispatch();
 
   function scrollX(e: React.WheelEvent<HTMLDivElement>) {
     const el = e.currentTarget;
@@ -27,7 +25,7 @@ export function Layout() {
   }
 
   useEffect(() => {
-    window.restman.client.registerAllEndpoints();
+    window.restman.client.registerAllEndpoints(true);
   }, []);
 
   return (
