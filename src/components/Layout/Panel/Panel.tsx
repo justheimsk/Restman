@@ -4,7 +4,11 @@ import './Panel.style.scss';
 import { PiDotsThreeOutline } from 'react-icons/pi';
 import { useAppSelector } from '../../../hooks';
 
-export function Panel() {
+export interface PanelProps {
+  active?: boolean;
+}
+
+export function Panel(props: PanelProps) {
   const endpoints = useAppSelector((state) => state.layout.endpoints);
 
   function addEndpoint() {
@@ -13,7 +17,10 @@ export function Panel() {
 
   return (
     <>
-      <div id="layout--panel">
+      <div
+        id="layout--panel"
+        className={`${props.active ? 'layout--panel__active' : ''}`}
+      >
         <div id="layout--panel--actions">
           {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
           <i onClick={() => addEndpoint()}>

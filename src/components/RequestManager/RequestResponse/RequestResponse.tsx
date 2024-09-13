@@ -37,12 +37,14 @@ export function RequestResponse() {
   const response = useAppSelector((state) => state.httpResponse.value);
 
   useEffect(() => {
-    console.log('Subscribed to resize event.');
-    window.addEventListener('resize', () => {
+    function resize() {
       setActive(false);
-
       setTimeout(() => setActive(true));
-    });
+    }
+
+    console.log('Subscribed to resize event.');
+    window.addEventListener('resize', resize);
+    window.restman.events.toggleMenu.subscribe(resize);
   }, []);
 
   function calcResponseSize(bytes: number) {

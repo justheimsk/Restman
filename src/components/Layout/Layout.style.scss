@@ -1,5 +1,6 @@
 #layout--container {
   display: flex;
+  flex-direction: column;
 
   .layout--column {
     height: calc(100vh - 48px);
@@ -17,10 +18,12 @@
 
   .layout--left {
     min-width: 380px;
+    max-height: 40px;
   }
 
   .layout--right {
     width: 100%;
+    max-height: 40px
   }
 
   .layout__flex {
@@ -99,5 +102,40 @@
       align-items: center;
       gap: 5px;
     }
+  }
+
+  .min-w {
+    min-width: 256px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .layout--left {
+      display: none;
+    }
+
+    .layout--tabs {
+      max-width: 100%;
+    }
+  }
+}
+
+#mobile-menu-toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 5;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 50%;
+  background-color: var(--postman);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
   }
 }

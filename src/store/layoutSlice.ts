@@ -5,22 +5,28 @@ import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 export type ILayoutState = {
   endpoints: Array<IEndpoint>;
   tabs: Array<ITab>;
+  menuState: boolean;
 };
 
 const initialState: ILayoutState = {
   endpoints: [],
   tabs: [],
+  menuState: !(window.innerWidth <= 768)
 };
 
 export const layoutSlice = createSlice({
   name: 'layoutSlice',
   initialState,
   reducers: {
+    toggleMenu: (state) => {
+      state.menuState = !state.menuState;
+      window.restman.events.toggleMenu.notify();
+    },
     pushEndpoint: (state, action: PayloadAction<Array<IEndpoint>>) => {
       for (const endp of action.payload) {
         state.endpoints.push(endp);
         state.tabs.push({
-          id: `${Math.floor(Math.random() * 999)}`,
+          id: `${Math.floor(Math.random() * 99999)}`,
           endpointId: endp.id,
         });
       }
@@ -47,5 +53,5 @@ export const layoutSlice = createSlice({
   },
 });
 
-export const { pushEndpoint, activateEndpoint, setUrl } = layoutSlice.actions;
+export const { pushEndpoint, activateEndpoint, setUrl, toggleMenu } = layoutSlice.actions;
 export default layoutSlice.reducer;

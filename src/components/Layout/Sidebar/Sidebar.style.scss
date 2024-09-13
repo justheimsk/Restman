@@ -11,10 +11,15 @@
   align-items: center;
   padding: 5px 0;
   gap: 6px;
+  z-index: 3;
 
   .layout--sidebar--divider {
     width: 60%;
     height: 1px;
     background-color: var(--hover);
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 }
