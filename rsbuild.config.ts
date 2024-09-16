@@ -6,5 +6,10 @@ export default defineConfig({
   plugins: [pluginReact(), pluginSass()],
   html: {
     template: './index.html'
+  },
+  performance: {
+    chunkSplit: {
+      strategy: 'split-by-experience'
+    }
   }
 });

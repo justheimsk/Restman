@@ -106,6 +106,7 @@ export function Layout() {
           </div>
         </div>
       </div>
+      {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
       <div onClick={() => dispatch(toggleMenu())} id="mobile-menu-toggle">
         <GiHamburgerMenu />
       </div>

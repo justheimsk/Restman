@@ -20,7 +20,7 @@ export const layoutSlice = createSlice({
   reducers: {
     toggleMenu: (state) => {
       state.menuState = !state.menuState;
-      window.restman.events.toggleMenu.notify();
+      if(window.innerWidth >= 768) window.restman.events.toggleMenu.notify();
     },
     pushEndpoint: (state, action: PayloadAction<Array<IEndpoint>>) => {
       for (const endp of action.payload) {
